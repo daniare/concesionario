@@ -9,6 +9,7 @@ import { AccountService } from 'app/core/auth/account.service';
 @Component({
   selector: 'jhi-main',
   templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;
@@ -21,6 +22,10 @@ export class MainComponent implements OnInit {
     rootRenderer: RendererFactory2
   ) {
     this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
+  }
+
+  isAdmin(value: string): boolean {
+    return this.accountService.hasAnyAuthority(value);
   }
 
   ngOnInit(): void {

@@ -1,0 +1,31 @@
+{
+  "fields": [
+    {
+      "fieldName": "fecha",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tipoPago",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "coche",
+      "otherEntityName": "coche",
+      "relationshipType": "one-to-one",
+      "otherEntityField": "matricula",
+      "ownerSide": true,
+      "id": true,
+      "otherEntityRelationshipName": "venta"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Venta",
+  "changelogDate": "20220120211335"
+}

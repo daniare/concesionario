@@ -1,0 +1,40 @@
+{
+  "fields": [
+    {
+      "fieldName": "matricula",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "color",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "precio",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "marca",
+      "otherEntityName": "marca",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    },
+    {
+      "relationshipName": "modelo",
+      "otherEntityName": "modelo",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Coche",
+  "changelogDate": "20220120210729"
+}

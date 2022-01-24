@@ -1,0 +1,24 @@
+{
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipName": "marca",
+      "otherEntityName": "marca",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    }
+  ],
+  "service": "serviceClass",
+  "dto": "mapstruct",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "pagination",
+  "name": "Modelo",
+  "changelogDate": "20220119192656"
+}

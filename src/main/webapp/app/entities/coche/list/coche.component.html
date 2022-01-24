@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="CocheHeading">
+    <span jhiTranslate="concesionarioApp.coche.home.title">Coches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="concesionarioApp.coche.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-coche"
+        [routerLink]="['/coche/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="concesionarioApp.coche.home.createLabel"> Create a new Coche </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="coches?.length === 0">
+    <span jhiTranslate="concesionarioApp.coche.home.notFound">No coches found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="coches && coches.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="matricula">
+            <span jhiTranslate="concesionarioApp.coche.matricula">Matricula</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="color">
+            <span jhiTranslate="concesionarioApp.coche.color">Color</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="precio">
+            <span jhiTranslate="concesionarioApp.coche.precio">Precio</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="marca.nombre">
+            <span jhiTranslate="concesionarioApp.coche.marca">Marca</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="modelo.nombre">
+            <span jhiTranslate="concesionarioApp.coche.modelo">Modelo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coche of coches; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/coche', coche.id, 'view']">{{ coche.id }}</a>
+          </td>
+          <td>{{ coche.matricula }}</td>
+          <td>{{ coche.color }}</td>
+          <td>{{ coche.precio }}</td>
+          <td>
+            <div *ngIf="coche.marca">
+              <a [routerLink]="['/marca', coche.marca?.id, 'view']">{{ coche.marca?.nombre }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="coche.modelo">
+              <a [routerLink]="['/modelo', coche.modelo?.id, 'view']">{{ coche.modelo?.nombre }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/coche', coche.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/coche', coche.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(coche)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="coches && coches.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

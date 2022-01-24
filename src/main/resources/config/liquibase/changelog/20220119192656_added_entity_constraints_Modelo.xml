@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Modelo.
+    -->
+    <changeSet id="20220119192656-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="marca_id"
+                                 baseTableName="modelo"
+                                 constraintName="fk_modelo__marca_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="marca"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="coche">
+      <h2 data-cy="cocheDetailsHeading"><span jhiTranslate="concesionarioApp.coche.detail.title">Coche</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ coche.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.coche.matricula">Matricula</span></dt>
+        <dd>
+          <span>{{ coche.matricula }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.coche.color">Color</span></dt>
+        <dd>
+          <span>{{ coche.color }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.coche.precio">Precio</span></dt>
+        <dd>
+          <span>{{ coche.precio }}</span>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.coche.marca">Marca</span></dt>
+        <dd>
+          <div *ngIf="coche.marca">
+            <a [routerLink]="['/marca', coche.marca?.id, 'view']">{{ coche.marca?.nombre }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="concesionarioApp.coche.modelo">Modelo</span></dt>
+        <dd>
+          <div *ngIf="coche.modelo">
+            <a [routerLink]="['/modelo', coche.modelo?.id, 'view']">{{ coche.modelo?.nombre }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/coche', coche.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

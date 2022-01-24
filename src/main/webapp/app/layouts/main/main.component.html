@@ -3,9 +3,9 @@
 <div>
   <router-outlet name="navbar"></router-outlet>
 </div>
-
+<h2>{{ isAdmin('ROLE_USER') ? 'Soy un Usuario' : 'Soy un Admin o no estoy conectado' }}</h2>
 <div class="container-fluid">
-  <div class="card jh-card">
+  <div class="card jh-card" [ngClass]="isAdmin('ROLE_ADMIN') ? 'admin' : 'user'">
     <router-outlet></router-outlet>
   </div>
 
