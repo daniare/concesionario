@@ -8,6 +8,7 @@ export interface ICoche {
   precio?: number;
   marca?: IMarca | null;
   modelo?: IModelo | null;
+  numeroSerie?: string;
 }
 
 export class Coche implements ICoche {
@@ -17,7 +18,8 @@ export class Coche implements ICoche {
     public color?: string,
     public precio?: number,
     public marca?: IMarca | null,
-    public modelo?: IModelo | null
+    public modelo?: IModelo | null,
+    public numeroSerie?: string
   ) {}
 }
 

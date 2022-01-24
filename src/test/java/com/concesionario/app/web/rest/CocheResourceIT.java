@@ -40,6 +40,9 @@ class CocheResourceIT {
     private static final Double DEFAULT_PRECIO = 1D;
     private static final Double UPDATED_PRECIO = 2D;
 
+    private static final String DEFAULT_NUMERO_SERIE = "AAAAAAAAAA";
+    private static final String UPDATED_NUMERO_SERIE = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/coches";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -67,7 +70,11 @@ class CocheResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Coche createEntity(EntityManager em) {
-        Coche coche = new Coche().matricula(DEFAULT_MATRICULA).color(DEFAULT_COLOR).precio(DEFAULT_PRECIO);
+        Coche coche = new Coche()
+            .matricula(DEFAULT_MATRICULA)
+            .color(DEFAULT_COLOR)
+            .precio(DEFAULT_PRECIO)
+            .numeroSerie(DEFAULT_NUMERO_SERIE);
         return coche;
     }
 
@@ -78,7 +85,11 @@ class CocheResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Coche createUpdatedEntity(EntityManager em) {
-        Coche coche = new Coche().matricula(UPDATED_MATRICULA).color(UPDATED_COLOR).precio(UPDATED_PRECIO);
+        Coche coche = new Coche()
+            .matricula(UPDATED_MATRICULA)
+            .color(UPDATED_COLOR)
+            .precio(UPDATED_PRECIO)
+            .numeroSerie(UPDATED_NUMERO_SERIE);
         return coche;
     }
 
@@ -104,6 +115,7 @@ class CocheResourceIT {
         assertThat(testCoche.getMatricula()).isEqualTo(DEFAULT_MATRICULA);
         assertThat(testCoche.getColor()).isEqualTo(DEFAULT_COLOR);
         assertThat(testCoche.getPrecio()).isEqualTo(DEFAULT_PRECIO);
+        assertThat(testCoche.getNumeroSerie()).isEqualTo(DEFAULT_NUMERO_SERIE);
     }
 
     @Test
@@ -193,7 +205,8 @@ class CocheResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(coche.getId().intValue())))
             .andExpect(jsonPath("$.[*].matricula").value(hasItem(DEFAULT_MATRICULA)))
             .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
-            .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())));
+            .andExpect(jsonPath("$.[*].precio").value(hasItem(DEFAULT_PRECIO.doubleValue())))
+            .andExpect(jsonPath("$.[*].numeroSerie").value(hasItem(DEFAULT_NUMERO_SERIE)));
     }
 
     @Test
@@ -210,7 +223,8 @@ class CocheResourceIT {
             .andExpect(jsonPath("$.id").value(coche.getId().intValue()))
             .andExpect(jsonPath("$.matricula").value(DEFAULT_MATRICULA))
             .andExpect(jsonPath("$.color").value(DEFAULT_COLOR))
-            .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()));
+            .andExpect(jsonPath("$.precio").value(DEFAULT_PRECIO.doubleValue()))
+            .andExpect(jsonPath("$.numeroSerie").value(DEFAULT_NUMERO_SERIE));
     }
 
     @Test
@@ -232,7 +246,7 @@ class CocheResourceIT {
         Coche updatedCoche = cocheRepository.findById(coche.getId()).get();
         // Disconnect from session so that the updates on updatedCoche are not directly saved in db
         em.detach(updatedCoche);
-        updatedCoche.matricula(UPDATED_MATRICULA).color(UPDATED_COLOR).precio(UPDATED_PRECIO);
+        updatedCoche.matricula(UPDATED_MATRICULA).color(UPDATED_COLOR).precio(UPDATED_PRECIO).numeroSerie(UPDATED_NUMERO_SERIE);
         CocheDTO cocheDTO = cocheMapper.toDto(updatedCoche);
 
         restCocheMockMvc
@@ -250,6 +264,7 @@ class CocheResourceIT {
         assertThat(testCoche.getMatricula()).isEqualTo(UPDATED_MATRICULA);
         assertThat(testCoche.getColor()).isEqualTo(UPDATED_COLOR);
         assertThat(testCoche.getPrecio()).isEqualTo(UPDATED_PRECIO);
+        assertThat(testCoche.getNumeroSerie()).isEqualTo(UPDATED_NUMERO_SERIE);
     }
 
     @Test
@@ -346,6 +361,7 @@ class CocheResourceIT {
         assertThat(testCoche.getMatricula()).isEqualTo(DEFAULT_MATRICULA);
         assertThat(testCoche.getColor()).isEqualTo(UPDATED_COLOR);
         assertThat(testCoche.getPrecio()).isEqualTo(DEFAULT_PRECIO);
+        assertThat(testCoche.getNumeroSerie()).isEqualTo(UPDATED_NUMERO_SERIE);
     }
 
     @Test
@@ -360,7 +376,7 @@ class CocheResourceIT {
         Coche partialUpdatedCoche = new Coche();
         partialUpdatedCoche.setId(coche.getId());
 
-        partialUpdatedCoche.matricula(UPDATED_MATRICULA).color(UPDATED_COLOR).precio(UPDATED_PRECIO);
+        partialUpdatedCoche.matricula(UPDATED_MATRICULA).color(UPDATED_COLOR).precio(UPDATED_PRECIO).numeroSerie(UPDATED_NUMERO_SERIE);
 
         restCocheMockMvc
             .perform(
@@ -377,6 +393,7 @@ class CocheResourceIT {
         assertThat(testCoche.getMatricula()).isEqualTo(UPDATED_MATRICULA);
         assertThat(testCoche.getColor()).isEqualTo(UPDATED_COLOR);
         assertThat(testCoche.getPrecio()).isEqualTo(UPDATED_PRECIO);
+        assertThat(testCoche.getNumeroSerie()).isEqualTo(UPDATED_NUMERO_SERIE);
     }
 
     @Test

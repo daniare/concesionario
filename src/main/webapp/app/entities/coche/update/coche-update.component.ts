@@ -27,6 +27,7 @@ export class CocheUpdateComponent implements OnInit {
     matricula: [null, [Validators.required]],
     color: [null, [Validators.required]],
     precio: [null, [Validators.required]],
+    numeroSerie: [],
     marca: [],
     modelo: [],
   });
@@ -94,6 +95,7 @@ export class CocheUpdateComponent implements OnInit {
       matricula: coche.matricula,
       color: coche.color,
       precio: coche.precio,
+      numeroSerie: coche.numeroSerie,
       marca: coche.marca,
       modelo: coche.modelo,
     });
@@ -123,6 +125,7 @@ export class CocheUpdateComponent implements OnInit {
       matricula: this.editForm.get(['matricula'])!.value,
       color: this.editForm.get(['color'])!.value,
       precio: this.editForm.get(['precio'])!.value,
+      numeroSerie: this.editForm.get(['numeroSerie'])!.value,
       marca: this.editForm.get(['marca'])!.value,
       modelo: this.editForm.get(['modelo'])!.value,
     };

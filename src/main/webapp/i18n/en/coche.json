@@ -22,7 +22,8 @@
       "color": "Color",
       "precio": "Precio",
       "marca": "Marca",
-      "modelo": "Modelo"
+      "modelo": "Modelo",
+      "numeroSerie": "Serial number"
     }
   }
 }

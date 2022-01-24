@@ -23,6 +23,8 @@
     <include file="config/liquibase/changelog/20220119192656_added_entity_constraints_Modelo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220120210729_added_entity_constraints_Coche.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220120211335_added_entity_constraints_Venta.xml" relativeToChangelogFile="false"/>
+    <!--include file="config/liquibase/changelog/20220124204256_updated_entity_Coche_column.xml" relativeToChangelogFile="false"/-->
+    <include file="config/liquibase/changelog/20220124204835_updated_entity_Coche_added_column.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

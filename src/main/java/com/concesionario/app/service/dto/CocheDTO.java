@@ -20,6 +20,8 @@ public class CocheDTO implements Serializable {
     @NotNull
     private Double precio;
 
+    private String numeroSerie;
+
     private MarcaDTO marca;
 
     private ModeloDTO modelo;
@@ -54,6 +56,14 @@ public class CocheDTO implements Serializable {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
     }
 
     public MarcaDTO getMarca() {
@@ -93,16 +103,24 @@ public class CocheDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "CocheDTO{" +
-            "id=" + getId() +
-            ", matricula='" + getMatricula() + "'" +
-            ", color='" + getColor() + "'" +
-            ", precio=" + getPrecio() +
-            ", marca=" + getMarca() +
-            ", modelo=" + getModelo() +
-            "}";
+        return (
+            "CocheDTO [color=" +
+            color +
+            ", id=" +
+            id +
+            ", marca=" +
+            marca +
+            ", matricula=" +
+            matricula +
+            ", modelo=" +
+            modelo +
+            ", numeroSerie=" +
+            numeroSerie +
+            ", precio=" +
+            precio +
+            "]"
+        );
     }
 }

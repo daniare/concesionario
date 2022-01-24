@@ -34,6 +34,9 @@ public class Coche implements Serializable {
     @Column(name = "precio", nullable = false)
     private Double precio;
 
+    @Column(name = "numero_serie")
+    private String numeroSerie;
+
     @ManyToOne
     private Marca marca;
 
@@ -95,6 +98,19 @@ public class Coche implements Serializable {
         this.precio = precio;
     }
 
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public Coche numeroSerie(String numeroSerie) {
+        this.setNumeroSerie(numeroSerie);
+        return this;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+
     public Marca getMarca() {
         return this.marca;
     }
@@ -140,14 +156,24 @@ public class Coche implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "Coche{" +
-            "id=" + getId() +
-            ", matricula='" + getMatricula() + "'" +
-            ", color='" + getColor() + "'" +
-            ", precio=" + getPrecio() +
-            "}";
+        return (
+            "Coche [color=" +
+            color +
+            ", id=" +
+            id +
+            ", marca=" +
+            marca +
+            ", matricula=" +
+            matricula +
+            ", modelo=" +
+            modelo +
+            ", numeroSerie=" +
+            numeroSerie +
+            ", precio=" +
+            precio +
+            "]"
+        );
     }
 }
